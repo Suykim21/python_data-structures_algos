@@ -118,7 +118,7 @@
 # Reverse the list by swapping two values 
 def reverse(seq):
     # Reverses elements of a list
-    for i in range(len(seq)//2):
+    for i in range(len(seq)/2):
         x = seq[i]
         y = seq[-i-1]
         seq[i] = y
