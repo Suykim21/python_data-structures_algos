@@ -20,6 +20,23 @@ class LinkedList(object):
             current_node = current_node.next_node
         return False
 
+    def find_at(self, index):
+        previous_node = None
+        current_node = self.head
+        i = 0
+
+        while i < index and current_node.next_node:
+            previous_node = current_node
+            current_node = current_node.next_node
+            i += 1
+
+        if i == index:
+            print(i)
+            return True
+
+        else:
+            return False
+
     # Converting linked list to python list
     def to_list(self):
         l = []
