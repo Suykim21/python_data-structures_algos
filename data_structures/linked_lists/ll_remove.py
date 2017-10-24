@@ -31,3 +31,20 @@ class LinkedList(object):
             current_node = current_node.next_node
         return False
 
+    def remove_at(self, index):
+        previous_node = None
+        current_node = self.head
+        i = 0
+
+        while i < index and current_node.next_node:
+            previous_node = current_node
+            current_node = current_node.next_node
+            i += 1
+
+        if i == index:
+            previous_node.next_node = current_node.next_node
+            return True
+        else:
+            return False
+
+
