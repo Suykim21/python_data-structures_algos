@@ -35,6 +35,8 @@ def is_prime_v3(n):
         return False
     
     max_divisor = math.floor(math.sqrt(n))
+
+    # start at index of 3 to end index, iterate every two indexes
     for d in range(3, 1 + max_divisor, 2):
         if n % d == 0:
             return False
