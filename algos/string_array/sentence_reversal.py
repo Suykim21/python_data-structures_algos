@@ -43,3 +43,17 @@ def rev_word3(s):
     
     # join the reversed words
     return " ".join(reversed(words))
+
+
+# Simpler solution
+def reverse_string(s):
+    rev_str = []
+    s_list = list(s)
+    for i in s_list:
+        # Append in reverse
+        rev_str.insert(0,i)
+    print("".join(rev_str))
+    return "".join(rev_str)
+
+reverse_string("hello")
+
