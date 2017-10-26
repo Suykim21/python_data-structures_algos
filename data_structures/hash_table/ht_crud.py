@@ -78,3 +78,6 @@ class HashTable(object):
 
     def __setitem__(self,key,data):
         self.put(key,data)
+
+    def __delitem__(self,key):
+        return self.remove(key)
