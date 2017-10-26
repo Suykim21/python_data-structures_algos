@@ -16,7 +16,7 @@ def pair_sum(arr, k):
 
         # pair_sum([1,3,2,2],4)
         # for every number in an array, we are looking for 4-1 or index of 0 = 3.
-        target = k-num
+        target = sum-num
 
         if target not in seen:
             # add 3 to seen set.
@@ -25,7 +25,9 @@ def pair_sum(arr, k):
         else:
             # find min and max between num and target ex: (1,3) = 4
             output.add( ( (min(num, target)), (max(num, target)) ) )
+    
+    # return len(output)
 
-    print '\n'.join(map(str,list(output)))
+    print ('\n'.join(map(str,list(output))))
 
-    return len(output)
+pair_sum([1,2,3,4], 3)
