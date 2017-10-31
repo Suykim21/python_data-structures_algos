@@ -51,7 +51,9 @@ def reverse_string(s):
     s_list = list(s)
     for i in s_list:
         # Append in reverse
+        # insert(index, item)
         rev_str.insert(0,i)
+        print(rev_str)
     print("".join(rev_str))
     return "".join(rev_str)
 

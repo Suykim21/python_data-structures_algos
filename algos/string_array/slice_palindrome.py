@@ -38,8 +38,10 @@ print(a[::-1])
 
 def isPalindrome(s):
     if s[::-1] == s:
+        # print(True)
         return True
     else:
+        # print(False)
         return False
 
 
