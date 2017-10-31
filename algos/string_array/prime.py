@@ -31,7 +31,7 @@ def is_prime_v3(n):
     # If it's even and not 2, then it's not prime
     if n == 2:
         return True
-    if n > 2 and n% 2 == 0:
+    if n > 2 and n%2 == 0:
         return False
     
     max_divisor = math.floor(math.sqrt(n))
