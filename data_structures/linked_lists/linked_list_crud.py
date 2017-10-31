@@ -14,7 +14,7 @@ class LinkedList:
     def printList (self):
         temp = self.head
         while (temp):
-            print temp.data
+            print (temp.data)
             temp = temp.next
 
 # Defining a method which will insert a new node at the beginning of the linked list
@@ -26,7 +26,7 @@ class LinkedList:
 # Defining a method which will insert a new node after specified node
     def insertAfter (self, prev_node, new_data):
         if prev_node is None:
-            print "The given previous node must be in linked list."
+            print ("The given previous node must be in linked list.")
             return
         new_node = Node(new_data)
         new_node.next = prev_node.next
