@@ -26,21 +26,47 @@ def rotate_matrix(matrix):
         print(n)
         first, last = layer, n - layer - 1
 
-    #     for i in range(first, last):
-    #         # save top
-    #         top = matrix[layer][i]
+        for i in range(first, last):
+            # save top
+            top = matrix[layer][i]
 
-    #         # left -> top
-    #         matrix[layer][i] = matrix[-i - 1][layer]
+            # left -> top
+            matrix[layer][i] = matrix[-i - 1][layer]
 
-    #         # bottom -> left
-    #         matrix[-i - 1][layer] = matrix[-layer - 1][-i - 1]
+            # bottom -> left
+            matrix[-i - 1][layer] = matrix[-layer - 1][-i - 1]
 
-    #         # right -> bottom
-    #         matrix[-layer - 1][-i - 1] = matrix[i][- layer - 1]
+            # right -> bottom
+            matrix[-layer - 1][-i - 1] = matrix[i][- layer - 1]
 
-    #         # top -> right
-    #         matrix[i][- layer - 1] = top
-    # return matrix
+            # top -> right
+            matrix[i][- layer - 1] = top
+    return matrix
 
 print(rotate_matrix([[3,4,5],[6,7,4],[1,3,4]]))
+
+"""By Kelly O'Shaughnessy
+Rotate nxn matrix by 90 degrees"""
+# review this code later
+def rotate(matrix):
+    if matrix is None or len(matrix)<1:
+        return
+    else:
+        if len(matrix)==1:
+            return matrix
+        else:
+            #solution matrix
+            soln = [row[:] for row in matrix]
+            #size of matrix
+            m = len(matrix[0])
+                    
+            for x in range(0,m):
+                for j in range(0,m):
+                    soln[j][m-1-x] = matrix[x][j]
+            return soln
+
+if __name__=="__main__":
+    six = [["a","b","c"],
+          [1,2,3],
+          ["x","y","z"]]
+    print "%s" % rotate(six)
