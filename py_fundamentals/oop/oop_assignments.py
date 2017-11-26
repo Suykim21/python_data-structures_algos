@@ -360,6 +360,79 @@ Ninja Level: add a method to call center class that can find and remove a call f
 Hacker Level: If everything is working properly, your queue should be sorted by time, but what if your calls get out of order? Add a method to the call center class that sorts the calls in the queue according to time of call in ascending order.
 '''
 
+from datetime import datetime
+
+class Call(object):
+    NUM_CALLS = 0
+    def __init__(self, caller, phone_num, reason):
+        self.caller = caller
+        self.phone_num = phone_num
+        self.time_of_call = datetime.now()
+        self.reason = reason
+        self.id = Call.NUM_CALLS
+        
+        Call.NUM_CALLS += 1
+    
+    def display_info(self):
+        print "\n" + ("#" * 20)
+        for attr, val in self.__dict__.iteritems():
+            if attr == "time_of_call":
+                print "{}: {}".format(attr, val.strftime("%I:%M:%S"))
+            else:
+                print "{}: {}".format(attr, val)
+        print "#" * 20
+
+class CallCenter(object):
+    def __init__(self):
+        self.calls = []
+        self.queue_size = self.get_queue_size()
+
+    def get_queue_size(self):
+        return len(self.calls)
+
+    def add(self, a_call):
+        self.calls.append(new_call)
+
+    def remove(self, r_call):
+        self.calls.remove(r_call)
+
+    def info(self):
+        for call in self.calls:
+            call.display_info()
+
+
+'''
+You can run this file to interactively add calls
+'''
+
+
+def handle_call():
+    print "Would You like to make a call?"
+    print "type [1] for yes and [0] for no"
+    ans = raw_input()
+    return int(ans)
+
+def take_call():
+    print "What is your name?"
+    name = raw_input()
+    print "What is your reason for calling?"
+    reason = raw_input()
+    print "Please confirm your phone number"
+    num = raw_input()
+    print "Please stay on the line while we proccess your call"
+    return Call(name, num, reason)
+
+game_on = True
+center = CallCenter()
+while game_on:
+    ring = handle_call()
+    if ring == 1:
+        center.calls.append(take_call())
+        print "All calls today:"
+        center.info()
+    else:
+        game_on = False
+
 '''
 Assignment: Hospital
 You're going to build a hospital with patients in it! Create a hospital class.
@@ -391,6 +464,55 @@ Methods:
 • Discharge: look up and remove a patient from the list of patients. Change bed number for that patient back to none.
 This is a challenging assignment. Ask yourself what input each method requires and what output you will need.
 '''
+
+class Patient(object):
+    PATIENT_COUNT = 0
+    def __init__(self, name, allergies):
+        self.name = name
+        self.allergies = allergies
+        self.id = Patient.PATIENT_COUNT
+        self.bed_num = None
+        Patient.PATIENT_COUNT += 1
+
+class Hospital(object):
+    def __init__(self, name, cap):
+        self.name = name
+        self.cap = cap
+        self.patients = []
+        self.beds = self.initialize_beds()
+
+    def initialize_beds(self):
+        beds = []
+        for i in range(0, self.cap):
+            beds.append({
+                "bed_id": i,
+                "Available": True
+            })
+        return beds
+
+    def admit(self, patient):
+        if len(self.patients) <= self.cap:
+            self.patients.append(patient)
+            for i in range(0, len(self.beds)):
+                if self.beds[i]["Available"]:
+                    patient.bed_num = self.beds[i]["bed_id"]
+                    self.beds[i]["Available"] = False
+                    break
+            print "Patient #{} admitted to bed #{}".format(patient.id, patient.bed_num)
+        else:
+            "Hospital is at full capacity"
+    def discharge(self, patient_id):
+        for patient in self.patients:
+            if patient.id == patient_id:
+                # free up bed
+                for bed in self.beds:
+                    if bed["bed_id"] == patient.bed_num:
+                        bed["Available"] = True
+                        break
+
+                self.patients.remove(patient)
+                return "Patient #{} sucessfully discharged.  Bed #{} now available".format(patient.id, patient.bed_num)
+        return "Patient not found"
 
 '''
 Optional Assignment: Underscore
